@@ -68,7 +68,7 @@ const LoginForm: React.FunctionComponent = () => {
       <main>
         <form onSubmit={submitHandler} noValidate>
           <fieldset>
-            <legend>sign in form</legend>
+            <legend className="sr-only">sign in form</legend>
             <p>
               <label
                 htmlFor="email_address"
@@ -115,7 +115,7 @@ const LoginForm: React.FunctionComponent = () => {
           </fieldset>
         </form>
       </main>
-      <footer>
+      <footer className="sticky">
         <ul>
           <li>
             <a href="/terms_of_use" onClick={() => { }}>Terms of Use</a>

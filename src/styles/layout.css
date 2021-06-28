@@ -1,0 +1,88 @@
+.standard {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  margin: 0 8px;
+  padding: 0;
+}
+
+.wrapper {
+  display: flex;
+  box-sizing: border-box; /* to avoid bleeding thru the parent div */
+  flex-direction: column;
+  align-items: center;
+  width: 98%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  margin: 5px 0 32px;
+  justify-content: center;
+}
+
+main {
+  flex-direction: column;
+  align-items: center;
+}
+
+fieldset {
+  padding: 5px;
+  border: none;
+  width: 100%;
+}
+
+fieldset p {
+  display: flex;
+  flex-direction: column;
+  padding: 6px 0;
+}
+
+p label {
+  margin-bottom: 2px;
+}
+
+p input {
+  padding: 16px 12px;
+}
+
+p button {
+  margin-top: 16px;
+  padding: 12px;
+}
+
+footer {
+  font-size: 12px;
+  min-height: 50px;
+  align-items: center;
+  justify-content: center;
+}
+
+footer ul {
+  justify-content: center;
+}
+
+footer ul li {
+  padding: 0 10px;
+  border-right: 1px solid;
+}
+
+li:last-child {
+  border-right: none;
+}
+
+.sticky {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+/* Desktop */
+@media screen and (min-device-width: 415px) {
+  .wrapper {
+    justify-content: center;
+    width: 320px;
+  }
+}
