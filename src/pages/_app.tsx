@@ -2,6 +2,7 @@ import { AppProps } from "next/app";
 import "@styles/normalize.css";
 import "@styles/layout.css";
 import "@styles/commons.css";
+import "@styles/disclaimer.css";
 
 const App: React.FC<AppProps> = (props) => {
   const { Component, pageProps } = props;

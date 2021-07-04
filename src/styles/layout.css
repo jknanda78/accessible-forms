@@ -33,21 +33,21 @@ fieldset {
   width: 100%;
 }
 
-fieldset p {
+fieldset div {
   display: flex;
   flex-direction: column;
   padding: 6px 0;
 }
 
-p label {
+div label {
   margin-bottom: 2px;
 }
 
-p input {
+div input {
   padding: 16px 12px;
 }
 
-p button {
+div button {
   margin-top: 16px;
   padding: 12px;
 }

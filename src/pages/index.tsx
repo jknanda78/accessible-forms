@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import Head from "next/head";
+import Disclaimer from "@components/disclaimer";
 
 const LoginForm: React.FunctionComponent = () => {
   const emailField = useRef(null);
@@ -69,13 +70,13 @@ const LoginForm: React.FunctionComponent = () => {
         <form onSubmit={submitHandler} noValidate>
           <fieldset>
             <legend className="sr-only">sign in form</legend>
-            <p>
+            <div>
               <label
                 htmlFor="email_address"
                 className={emailErr ? "field-error" : null}
               >
                 Email address (required)
-                <span className="sr-only">{emailErr ? emailErr : ""}</span>
+                {emailErr ? <span className="sr-only">{emailErr}</span> : null}
               </label>
               <input
                 type="email"
@@ -88,14 +89,14 @@ const LoginForm: React.FunctionComponent = () => {
               {emailErr ? (
                 <div id="emailErr" className="field-error">{emailErr}</div>
               ) : null}
-            </p>
-            <p>
+            </div>
+            <div>
               <label
                 htmlFor="password"
                 className={passErr ? "field-error" : null}
               >
                 Password (required)
-                <span className="sr-only">{passErr ? passErr : ""}</span>
+                {passErr ? <span className="sr-only">{passErr}</span> : null}
               </label>
               <input
                 type="password"
@@ -108,10 +109,11 @@ const LoginForm: React.FunctionComponent = () => {
               {passErr ? (
                 <div className="field-error">{passErr}</div>
               ) : null}
-            </p>
-            <p>
+            </div>
+            <Disclaimer />
+            <div>
               <button type="submit" name="submit" id="submit">Sign in</button>
-            </p>
+            </div>
           </fieldset>
         </form>
       </main>

@@ -1,0 +1,10 @@
+.disclaimer {
+  position: relative;
+  min-height: 20px;
+}
+
+.disclaimer .content {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
