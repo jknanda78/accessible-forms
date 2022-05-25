@@ -1,6 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import Head from "next/head";
 import Disclaimer from "@components/disclaimer";
+import { useRouter } from 'next/router'
+import jwt from "jsonwebtoken";
+import { setCookie } from "tiny-cookie";
 
 const LoginForm: React.FunctionComponent = () => {
   const emailField = useRef(null);
@@ -8,7 +11,8 @@ const LoginForm: React.FunctionComponent = () => {
   const [email, updateEmail] = useState("");
   const [pass, updatePass] = useState("");
   const [emailErr, setEmailErr] = useState("");
-  const [passErr, setPassErr] = useState("")
+  const [passErr, setPassErr] = useState("");
+  const router = useRouter();
   const emailChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     updateEmail(e.currentTarget.value);
   };
@@ -40,14 +44,19 @@ const LoginForm: React.FunctionComponent = () => {
   };
   const submitHandler = (e: React.SyntheticEvent) => {
     e.preventDefault();
-
-    validate()
+    console.log("email::", email, " Password::", pass);
+    var token = jwt.sign({ email, pass }, "SECRET_SIGNATURE");
+    const expires_in_2_mins = new Date();
+    expires_in_2_mins.setTime(expires_in_2_mins.getTime() + 60 * 2 * 1000);
+    setCookie("gc", token, { expires: expires_in_2_mins.toUTCString() });
+    router.push("/account");
+    /*validate()
       .then((valid) => {
         valid ? alert("form validation successful") : null;
       })
       .catch((e) => {
         console.log(e);
-      });
+      });*/
   }
 
   useEffect(() => {
