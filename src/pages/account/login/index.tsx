@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import Head from "next/head";
 import Disclaimer from "@components/disclaimer";
 import { useRouter } from 'next/router'
-import jwt from "jsonwebtoken";
 import { setCookie } from "tiny-cookie";
 import AES from "jscrypto";
 
@@ -45,13 +44,11 @@ const LoginForm: React.FunctionComponent = () => {
   };
   const submitHandler = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    const token = jwt.sign({ email, pass }, "SECRET_SIGNATURE");
     const aes_token = AES.AES.encrypt(JSON.stringify({ email, pass }), "SECRET_SIGNATURE").toString();
-    console.log("jscrypto:aes_token:", aes_token);
     const expires_in_2_mins = new Date();
+
     expires_in_2_mins.setTime(expires_in_2_mins.getTime() + 60 * 2 * 1000);
-    setCookie("gc", token, { expires: expires_in_2_mins.toUTCString() });
-    setCookie("gc2", aes_token, { expires: expires_in_2_mins.toUTCString() });
+    setCookie("gc", aes_token, { expires: expires_in_2_mins.toUTCString() });
     router.push("/account");
     /*validate()
       .then((valid) => {
