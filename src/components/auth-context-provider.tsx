@@ -15,7 +15,8 @@ export const useAuthContext = () => useContext(AuthContext);
 export const AuthContextConsumer = AuthContext.Consumer;
 export const AuthContextProvider = ({
 	children,
-	initialAuthState
+	initialAuthState,
+  allowSignInVariations
 }) => {
 	const [authState, setAuthState] = useState(initialAuthState);
 	const initiateOneTapSignIn = () => {
@@ -42,11 +43,17 @@ export const AuthContextProvider = ({
 		}
 	};
 
+  useEffect(() => {
+    if (allowSignInVariations) {
+      initiateOneTapSignIn(); // Approach 2
+    }
+  }, []);
+
 	return (
 		<AuthContext.Provider
 			value={{
 				authState,
-				initiateOneTapSignIn
+				initiateOneTapSignIn // Approach 1
 			}}
 		>
 			{children}

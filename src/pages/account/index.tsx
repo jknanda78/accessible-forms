@@ -16,6 +16,7 @@ export default () => {
 
   return (
     <AuthContextProvider
+      allowSignInVariations // Approach 2
       initialAuthState={null}
     >
       <WelcomePage />
@@ -26,9 +27,11 @@ export default () => {
 const WelcomePage = () => {
   const { initiateOneTapSignIn, authState } = useAuthContext() || {};
 
+  /* Approach 1
   useEffect(() => {
     initiateOneTapSignIn();
   }, []);
+  */
 
   return (
     <h2>Welcome { authState?.profile.email }</h2>
